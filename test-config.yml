@@ -1,2 +1,32 @@
+server:
+  port: 9000
+
 spring:
-  port: 80
+  application:
+    profiles: dev
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:8761/eureka/
+  instance:
+    hostname: zuul
+    instance-id: zuul-9000
+
+# 路由端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      # 默认是never
+      show-details: always
+      enabled: true
+    routes:
+      enabled: true
+---
+
+
